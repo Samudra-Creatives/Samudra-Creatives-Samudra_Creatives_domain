@@ -1,0 +1,535 @@
+
+.gallery-page {
+  --gallery-bg: #fafaf8;
+  --gallery-text: #171717;
+  --gallery-muted: #707070;
+  --gallery-border: #e8e7e2;
+  --gallery-cta: #171717;
+
+  overflow: clip;
+  color: var(--gallery-text);
+  background: var(--gallery-bg);
+}
+
+.gallery-container {
+  width: min(1440px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.gallery-eyebrow {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #dedcd6;
+  background: #f1efea;
+  color: #686b60;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   HERO — EXACTLY TWO MOVING ROWS
+========================================= */
+
+.gallery-hero {
+  position: relative;
+  padding-block: 34px 20px;
+  overflow: hidden;
+  background: var(--gallery-bg);
+}
+
+.gallery-hero__rows {
+  display: grid;
+  gap: 14px;
+}
+
+.gallery-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: gallery-marquee-left var(--marquee-duration, 34s) linear infinite;
+}
+
+.gallery-marquee--right .gallery-marquee__track {
+  animation-name: gallery-marquee-right;
+}
+
+.gallery-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  padding-right: 14px;
+}
+
+.gallery-marquee__item {
+  flex: 0 0 auto;
+  width: clamp(190px, 23vw, 330px);
+  height: clamp(125px, 15vw, 205px);
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  background: #ecebe6;
+}
+
+.gallery-marquee__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes gallery-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gallery-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.gallery-hero__fade {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: clamp(20px, 5vw, 75px);
+  pointer-events: none;
+}
+
+.gallery-hero__fade--left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--gallery-bg),
+    transparent
+  );
+}
+
+.gallery-hero__fade--right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--gallery-bg),
+    transparent
+  );
+}
+
+/* =========================================
+   PORTFOLIO HEADING
+========================================= */
+
+.gallery-portfolio {
+  padding-block: clamp(70px, 9vw, 125px) clamp(75px, 10vw, 135px);
+}
+
+.gallery-section-heading {
+  max-width: 800px;
+  margin: 0 auto clamp(36px, 5vw, 64px);
+  text-align: center;
+}
+
+.gallery-section-heading h1 {
+  margin: 16px 0 17px;
+  font-size: clamp(42px, 6.5vw, 82px);
+  font-weight: 750;
+  letter-spacing: -0.065em;
+  line-height: 0.99;
+}
+
+.gallery-section-heading p {
+  max-width: 570px;
+  margin: 0 auto;
+  color: var(--gallery-muted);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.85;
+}
+
+/* =========================================
+   ASYMMETRIC PORTFOLIO GRID
+========================================= */
+
+/* =========================================
+   PORTFOLIO GRID — ALIGNED EDITORIAL LAYOUT
+========================================= */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "brand campaign campaign social"
+    "brand wedding gifts brochure"
+    "merch merch trophies signage"
+    "cards laser laser apparel";
+  grid-template-rows: 190px 190px 190px 190px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.portfolio-card {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  background: #e8e7e2;
+  isolation: isolate;
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+}
+
+/* Explicit placements prevent random gaps */
+.portfolio-card:nth-child(1)  { grid-area: brand; }
+.portfolio-card:nth-child(2)  { grid-area: campaign; }
+.portfolio-card:nth-child(3)  { grid-area: social; }
+.portfolio-card:nth-child(4)  { grid-area: wedding; }
+.portfolio-card:nth-child(5)  { grid-area: gifts; }
+.portfolio-card:nth-child(6)  { grid-area: brochure; }
+.portfolio-card:nth-child(7)  { grid-area: merch; }
+.portfolio-card:nth-child(8)  { grid-area: trophies; }
+.portfolio-card:nth-child(9)  { grid-area: signage; }
+.portfolio-card:nth-child(10) { grid-area: cards; }
+.portfolio-card:nth-child(11) { grid-area: laser; }
+.portfolio-card:nth-child(12) { grid-area: apparel; }
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "brand campaign"
+      "brand campaign"
+      "social wedding"
+      "gifts brochure"
+      "merch merch"
+      "trophies signage"
+      "cards laser"
+      "apparel apparel";
+    grid-template-rows: repeat(8, 170px);
+    gap: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "brand brand"
+      "campaign campaign"
+      "social wedding"
+      "gifts brochure"
+      "merch merch"
+      "trophies signage"
+      "cards laser"
+      "apparel apparel";
+    grid-template-rows:
+      220px
+      190px
+      160px
+      160px
+      180px
+      160px
+      160px
+      180px;
+    gap: 10px;
+  }
+
+  .portfolio-card {
+    border-radius: 12px;
+  }
+}
+
+/* =========================================
+   CONTACT CTA
+========================================= */
+
+.gallery-contact {
+  padding: clamp(68px, 9vw, 115px) 24px;
+  border-top: 1px solid var(--gallery-border);
+  text-align: center;
+  background: #f2f2ee;
+  scroll-margin-top: 90px;
+}
+
+.gallery-contact__inner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.gallery-contact h2 {
+  margin: 17px 0 16px;
+  font-size: clamp(36px, 5.5vw, 66px);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.gallery-contact p {
+  margin: 0;
+  color: var(--gallery-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.gallery-contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.gallery-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 49px;
+  padding: 0 24px;
+  border: 1.5px solid var(--gallery-cta);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.gallery-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-button--primary {
+  color: #fff;
+  background: var(--gallery-cta);
+}
+
+.gallery-button--primary:hover {
+  color: #171717;
+  background: #d5ff82;
+  border-color: #d5ff82;
+  box-shadow: 0 4px 16px rgba(182, 255, 0, 0.3);
+}
+
+.gallery-button--secondary {
+  color: var(--gallery-cta);
+  background: transparent;
+}
+
+.gallery-button--secondary:hover {
+  color: #fff;
+  background: var(--gallery-cta);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (min-width: 1500px) {
+  .portfolio-grid {
+    grid-auto-rows: 115px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .gallery-container {
+    width: min(100% - 40px, 760px);
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 100px;
+    gap: 13px;
+  }
+
+  .portfolio-card--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-container {
+    width: calc(100% - 28px);
+  }
+
+  .gallery-hero {
+    padding-block: 18px 8px;
+  }
+
+  .gallery-hero__rows {
+    gap: 9px;
+  }
+
+  .gallery-marquee__group {
+    gap: 9px;
+    padding-right: 9px;
+  }
+
+  .gallery-marquee__item {
+    width: 190px;
+    height: 125px;
+    border-radius: 4px;
+  }
+
+  .gallery-portfolio {
+    padding-block: 65px 75px;
+  }
+
+  .gallery-section-heading {
+    margin-bottom: 32px;
+  }
+
+  .gallery-section-heading h1 {
+    font-size: clamp(38px, 10vw, 52px);
+  }
+
+  .gallery-section-heading p {
+    font-size: 13px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 90px;
+    gap: 10px;
+  }
+
+  .portfolio-card--normal {
+    grid-column: span 1;
+    grid-row: span 3;
+  }
+
+  .portfolio-card--tall {
+    grid-column: span 1;
+    grid-row: span 4;
+  }
+
+  .portfolio-card--wide {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
+  .portfolio-card__overlay {
+    padding: 12px;
+    opacity: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.04) 10%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+  }
+
+  .portfolio-card__details {
+    transform: none;
+  }
+
+  .portfolio-card__details h3 {
+    font-size: 15px;
+  }
+
+  .portfolio-card__details p {
+    display: none;
+  }
+
+  .portfolio-card__meta {
+    font-size: 9px;
+  }
+
+  .portfolio-card__meta svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .portfolio-card__cta {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  .gallery-contact {
+    padding-inline: 20px;
+  }
+
+  .gallery-contact p {
+    font-size: 13px;
+  }
+
+  .gallery-contact__actions {
+    flex-direction: column;
+  }
+
+  .gallery-button {
+    width: 100%;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .portfolio-card__image,
+  .portfolio-card__overlay,
+  .portfolio-card__details,
+  .portfolio-card__meta svg,
+  .gallery-button {
+    transition: none !important;
+  }
+
+  .gallery-button:hover {
+    transform: none;
+  }
+
+  .portfolio-card__link .portfolio-card__overlay {
+    opacity: 1;
+  }
+
+  .portfolio-card__link .portfolio-card__details {
+    transform: none;
+  }
+}
+
+/* TEMPORARY TEST: hide portfolio card text overlays */
+.portfolio-card .portfolio-card__overlay {
+  display: none !important;
+}

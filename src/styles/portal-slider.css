@@ -1,0 +1,1282 @@
+/* =========================================================
+   PORTAL SLIDER
+   Samudra Creatives
+   ========================================================= */
+
+.portal-slider {
+  --portal-lime: #b6ff00;
+  --portal-dark: #031208;
+  --portal-black: #050505;
+  --portal-green: #073b13;
+  --portal-blue: #2f6f9f;
+  --portal-sky: #5b8faf;
+
+  position: relative;
+
+  width: 100%;
+  min-height: 580px;
+
+  overflow: visible;
+
+  perspective: 1600px;
+  perspective-origin: center center;
+
+  isolation: isolate;
+
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/* =========================================================
+   ATMOSPHERE
+   ========================================================= */
+
+.portal-slider__ambient {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(182, 255, 0, 0.10)
+        0%,
+      rgba(9, 107, 8, 0.08)
+        30%,
+      transparent 70%
+    );
+
+  filter: blur(12px);
+
+  pointer-events: none;
+
+  z-index: -4;
+}
+
+.portal-slider__ambient--blue {
+  width: 700px;
+  height: 300px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(47, 111, 159, 0.10)
+        0%,
+      rgba(91, 143, 175, 0.04)
+        30%,
+      transparent 70%
+    );
+
+  filter: blur(35px);
+}
+
+/* =========================================================
+   3D STAGE
+   ========================================================= */
+
+.portal-slider__stage {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  transform:
+    translate(-50%, -50%);
+
+  transform-style: preserve-3d;
+
+  perspective: 1500px;
+
+  z-index: 20;
+}
+
+/* =========================================================
+   PORTAL
+   ========================================================= */
+
+.portal {
+  position: absolute;
+
+  top: 50%;
+
+  width: 170px;
+  height: 260px;
+
+  transform-style: preserve-3d;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.portal--left {
+  left: -15px;
+
+  transform:
+    translateY(-50%)
+    rotateY(68deg);
+}
+
+.portal--right {
+  right: -15px;
+
+  transform:
+    translateY(-50%)
+    rotateY(-68deg);
+}
+
+/* =========================================================
+   PORTAL ATMOSPHERE
+   ========================================================= */
+
+.portal__atmosphere {
+  position: absolute;
+
+  inset: -100px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(182, 255, 0, 0.14),
+      rgba(47, 111, 159, 0.05)
+        40%,
+      transparent 70%
+    );
+
+  filter: blur(25px);
+
+  transform: translateZ(-80px);
+
+  animation:
+    portalPulse 4s ease-in-out
+    infinite;
+}
+
+.portal__outer-glow {
+  position: absolute;
+
+  inset: 20px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 40%,
+      rgba(182, 255, 0, 0.18)
+        62%,
+      transparent 72%
+    );
+
+  filter: blur(12px);
+
+  transform: translateZ(-15px);
+}
+
+/* =========================================================
+   PORTAL BODY
+   ========================================================= */
+
+.portal__body {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #050505 0%,
+      #031208 42%,
+      #073b13 64%,
+      #050505 100%
+    );
+
+  border:
+    2px solid
+    rgba(182, 255, 0, 0.55);
+
+  box-shadow:
+    inset 0 0 45px
+      rgba(0, 0, 0, 0.95),
+    inset 0 0 25px
+      rgba(182, 255, 0, 0.18),
+    0 0 30px
+      rgba(182, 255, 0, 0.18),
+    0 0 80px
+      rgba(47, 111, 159, 0.10);
+
+  transform:
+    translateZ(0);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   PORTAL TUNNEL
+   ========================================================= */
+
+.portal__tunnel {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 62%;
+  height: 62%;
+
+  transform:
+    translate(-50%, -50%)
+    translateZ(25px);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #000 0%,
+      #020604 42%,
+      #031208 70%,
+      #073b13 100%
+    );
+
+  box-shadow:
+    inset 0 0 30px
+      rgba(0, 0, 0, 1),
+    0 0 30px
+      rgba(182, 255, 0, 0.18);
+}
+
+.portal__tunnel-glow {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 42%,
+      rgba(182, 255, 0, 0.18)
+        60%,
+      transparent 72%
+    );
+
+  filter: blur(7px);
+}
+
+/* =========================================================
+   PORTAL CORE
+   ========================================================= */
+
+.portal__core {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 44%;
+  height: 44%;
+
+  transform:
+    translate(-50%, -50%)
+    translateZ(45px);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #000 0%,
+      #010201 55%,
+      #031208 100%
+    );
+
+  box-shadow:
+    inset 0 0 25px #000,
+    0 0 20px
+      rgba(182, 255, 0, 0.10);
+}
+
+.portal__core-light {
+  position: absolute;
+
+  inset: -15px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(182, 255, 0, 0.5);
+
+  box-shadow:
+    0 0 20px
+      rgba(182, 255, 0, 0.25);
+
+  animation:
+    corePulse 3s ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   PORTAL RINGS
+   ========================================================= */
+
+.portal__ring {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+
+  pointer-events: none;
+}
+
+.portal__ring span {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  border: 1px solid
+    rgba(182, 255, 0, 0.45);
+}
+
+/* Outer */
+
+.portal__ring--outer {
+  width: 110%;
+  height: 70%;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(8deg)
+    rotateZ(0deg);
+
+  animation:
+    portalRotate 15s linear
+    infinite;
+}
+
+.portal__ring--outer span {
+  border-width: 1px;
+
+  box-shadow:
+    0 0 10px
+      rgba(182, 255, 0, 0.16);
+}
+
+/* Second */
+
+.portal__ring--second {
+  width: 118%;
+  height: 76%;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(-15deg)
+    rotateZ(0deg);
+
+  animation:
+    portalRotateReverse 19s linear
+    infinite;
+}
+
+.portal__ring--second span {
+  border-color:
+    rgba(47, 111, 159, 0.55);
+
+  box-shadow:
+    0 0 12px
+      rgba(47, 111, 159, 0.2);
+}
+
+/* Third */
+
+.portal__ring--third {
+  width: 94%;
+  height: 62%;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(30deg);
+
+  animation:
+    portalRotate 11s linear
+    infinite;
+}
+
+.portal__ring--third span {
+  border-color:
+    rgba(91, 143, 175, 0.45);
+}
+
+/* Energy ring */
+
+.portal__ring--energy {
+  width: 82%;
+  height: 54%;
+
+  transform:
+    translate(-50%, -50%)
+    rotateX(-28deg);
+
+  animation:
+    portalRotateReverse 8s linear
+    infinite;
+}
+
+.portal__ring--energy span {
+  border:
+    2px solid
+    rgba(182, 255, 0, 0.70);
+
+  box-shadow:
+    0 0 18px
+      rgba(182, 255, 0, 0.35);
+}
+
+/* =========================================================
+   PORTAL PARTICLES
+   ========================================================= */
+
+.portal__particles {
+  position: absolute;
+
+  inset: -25px;
+
+  pointer-events: none;
+
+  transform-style: preserve-3d;
+}
+
+.portal__particles span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    var(--portal-lime);
+
+  box-shadow:
+    0 0 7px
+      var(--portal-lime);
+
+  animation:
+    particleFloat
+    var(--particle-duration, 4s)
+    ease-in-out
+    infinite;
+}
+
+.portal__particles span:nth-child(1) {
+  top: 12%;
+  left: 18%;
+  --particle-duration: 3.8s;
+}
+
+.portal__particles span:nth-child(2) {
+  top: 76%;
+  left: 20%;
+  --particle-duration: 5.1s;
+}
+
+.portal__particles span:nth-child(3) {
+  top: 22%;
+  right: 13%;
+  --particle-duration: 4.3s;
+}
+
+.portal__particles span:nth-child(4) {
+  top: 81%;
+  right: 17%;
+  --particle-duration: 3.6s;
+}
+
+.portal__particles span:nth-child(5) {
+  top: 48%;
+  left: 5%;
+  --particle-duration: 5.6s;
+}
+
+.portal__particles span:nth-child(6) {
+  top: 52%;
+  right: 5%;
+  --particle-duration: 4.8s;
+}
+
+/* =========================================================
+   CARD ORBIT
+   ========================================================= */
+
+.portal-slide {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 300px;
+
+  transform:
+    translate3d(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y)),
+      var(--z)
+    )
+    rotateX(var(--rotate-x))
+    rotateY(var(--rotate-y))
+    rotateZ(var(--rotate-z))
+    scale(var(--scale));
+
+  transform-style: preserve-3d;
+
+  opacity: var(--opacity);
+
+  filter:
+    blur(var(--blur))
+    saturate(var(--saturation));
+
+  z-index:
+    calc(
+      50 -
+      (abs(var(--position)) * 5)
+    );
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+
+  pointer-events: none;
+
+  transition:
+    transform
+      1050ms
+      cubic-bezier(
+        0.22,
+        0.61,
+        0.36,
+        1
+      ),
+    opacity
+      900ms ease,
+    filter
+      900ms ease;
+}
+
+/*
+ * CSS z-index cannot reliably calculate
+ * abs() in every browser version, so
+ * explicit position layers are added below.
+ */
+
+.portal-slide[data-position="-3"],
+.portal-slide[data-position="3"] {
+  z-index: 8;
+}
+
+.portal-slide[data-position="-2"],
+.portal-slide[data-position="2"] {
+  z-index: 14;
+}
+
+.portal-slide[data-position="-1"],
+.portal-slide[data-position="1"] {
+  z-index: 24;
+}
+
+.portal-slide[data-position="0"] {
+  z-index: 40;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.portal-slide__card {
+  position: relative;
+
+  display: block;
+
+  width: 90%;
+
+  aspect-ratio: 0.68;
+
+  overflow: hidden;
+
+  border:
+    7px solid
+    rgba(255, 255, 255, 0.96);
+
+  border-radius: 26px;
+
+  background:
+    #fff;
+
+  box-shadow:
+    0 50px 120px
+      rgba(0, 0, 0, 0.40),
+    0 20px 50px
+      rgba(0, 0, 0, 0.22),
+    0 0 55px
+      rgba(182, 255, 0, 0.12);
+
+  transform:
+    translateZ(0);
+
+  pointer-events: auto;
+
+  outline: none;
+}
+
+.portal-slide__card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.16),
+      transparent 35%,
+      rgba(0, 0, 0, 0.18)
+    );
+}
+
+.portal-slide__image-wrap {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    var(--portal-green);
+}
+
+.portal-slide__image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  user-select: none;
+
+  transform:
+    scale(1);
+
+  transition:
+    transform 900ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.portal-slide--active
+  .portal-slide__card:hover
+  .portal-slide__image {
+  transform:
+    scale(1.035);
+}
+
+/* =========================================================
+   CARD SHINE
+   ========================================================= */
+
+.portal-slide__shine {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.16)
+        45%,
+      transparent 65%
+    );
+
+  transform:
+    translateX(-120%);
+
+  transition:
+    transform 900ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.portal-slide--active
+  .portal-slide__card:hover
+  .portal-slide__shine {
+  transform:
+    translateX(120%);
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.portal-slide__content {
+  position: absolute;
+
+  inset: auto 0 0;
+
+  z-index: 8;
+
+  padding: 72px 24px 24px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(3, 18, 8, 0),
+      rgba(3, 18, 8, 0.86) 42%,
+      rgba(3, 18, 8, 0.96)
+    );
+
+  opacity: 0;
+
+  transform:
+    translateY(18px);
+
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
+.portal-slide__card:hover
+  .portal-slide__content,
+.portal-slide__card:focus-visible
+  .portal-slide__content {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+.portal-slide__category {
+  display: inline-block;
+
+  padding: 4px 10px;
+  margin-bottom: 8px;
+
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(182, 255, 0, 0.4);
+  background: rgba(3, 18, 8, 0.65);
+  backdrop-filter: blur(8px);
+
+  color:
+    var(--portal-lime);
+
+  font-family:
+    var(--font-heading);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing:
+    0.17em;
+}
+
+.portal-slide__content h3 {
+  margin: 0;
+
+  color: white;
+
+  font-family:
+    var(--font-heading);
+
+  font-size: 20px;
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+.portal-slide__content p {
+  margin:
+    6px
+    0
+    11px;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 9px;
+
+  line-height: 1.45;
+}
+
+.portal-slide__explore {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(182, 255, 0, 0.45);
+  background: rgba(3, 18, 8, 0.6);
+  backdrop-filter: blur(8px);
+
+  color:
+    var(--portal-lime);
+
+  font-family:
+    var(--font-heading);
+
+  margin-top: 14px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    0 1px 8px
+      rgba(0, 0, 0, 0.45);
+
+  transition:
+    gap 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.portal-slide__card:hover
+  .portal-slide__explore {
+  gap: 10px;
+  background: rgba(182, 255, 0, 0.15);
+  border-color: var(--portal-lime);
+}
+
+/* =========================================================
+   ACTIVE CARD
+   ========================================================= */
+
+.portal-slide--active
+  .portal-slide__card {
+  box-shadow:
+    0 55px 130px
+      rgba(0, 0, 0, 0.46),
+    0 25px 60px
+      rgba(0, 0, 0, 0.26),
+    0 0 60px
+      rgba(182, 255, 0, 0.16);
+}
+
+.portal-slide--active
+  .portal-slide__card:focus-visible {
+  outline:
+    2px solid
+    var(--portal-lime);
+
+  outline-offset: 7px;
+}
+
+/* =========================================================
+   ARROWS
+   ========================================================= */
+
+.portal-slider__arrow {
+  position: absolute;
+
+  top: 50%;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(3, 18, 8, 0.45);
+  backdrop-filter: blur(10px);
+
+  color:
+    rgba(255, 255, 255, 0.85);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 28px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  transform:
+    translateY(-50%);
+
+  z-index: 80;
+
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.portal-slider__arrow:hover {
+  color:
+    var(--portal-lime);
+
+  background:
+    rgba(3, 18, 8, 0.75);
+
+  border-color:
+    var(--portal-lime);
+
+  box-shadow:
+    0 0 20px rgba(182, 255, 0, 0.3);
+
+  transform:
+    translateY(-50%)
+    scale(1.1);
+}
+
+.portal-slider__arrow:focus-visible {
+  color:
+    var(--portal-lime);
+
+  outline:
+    1px solid
+    var(--portal-lime);
+
+  outline-offset: 5px;
+}
+
+.portal-slider__arrow--left {
+  left: 15px;
+}
+
+.portal-slider__arrow--right {
+  right: 15px;
+}
+
+/* =========================================================
+   PORTAL ANIMATIONS
+   ========================================================= */
+
+@keyframes portalRotate {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotateX(8deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotateX(8deg)
+      rotateZ(360deg);
+  }
+}
+
+@keyframes portalRotateReverse {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotateX(-15deg)
+      rotateZ(360deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotateX(-15deg)
+      rotateZ(0deg);
+  }
+}
+
+@keyframes portalPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform:
+      translateZ(-80px)
+      scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform:
+      translateZ(-80px)
+      scale(1.04);
+  }
+}
+
+@keyframes corePulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform:
+      scale(0.94);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform:
+      scale(1.05);
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    opacity: 0.2;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate3d(
+        5px,
+        -12px,
+        25px
+      );
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .portal-slider {
+    min-height: 515px;
+  }
+
+  .portal-slider__stage {
+    perspective: 1200px;
+  }
+
+  .portal-slide {
+    width: 270px;
+  }
+
+  .portal {
+    width: 145px;
+    height: 220px;
+  }
+
+  .portal--left {
+    left: -5px;
+  }
+
+  .portal--right {
+    right: -5px;
+  }
+
+  .portal-slider__arrow--left {
+    left: 0;
+  }
+
+  .portal-slider__arrow--right {
+    right: 0;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .portal-slider {
+    min-height: 420px;
+
+    overflow: hidden;
+  }
+
+  .portal-slider__stage {
+    perspective: 1000px;
+  }
+
+  .portal-slide {
+    width: 205px;
+
+    /*
+     * JS still calculates the orbit.
+     * CSS only scales the complete scene.
+     */
+    transform:
+      translate3d(
+        calc(
+          -50% +
+          calc(var(--x) * 0.62)
+        ),
+        calc(
+          -50% +
+          calc(var(--y) * 0.7)
+        ),
+        calc(
+          var(--z) * 0.62
+        )
+      )
+      rotateX(var(--rotate-x))
+      rotateY(var(--rotate-y))
+      rotateZ(var(--rotate-z))
+      scale(
+        calc(
+          var(--scale) * 0.88
+        )
+      );
+  }
+
+  .portal {
+    width: 105px;
+    height: 165px;
+  }
+
+  .portal--left {
+    left: -18px;
+  }
+
+  .portal--right {
+    right: -18px;
+  }
+
+  .portal-slider__arrow {
+    width: 35px;
+    height: 35px;
+
+    font-size: 32px;
+  }
+
+  .portal-slider__arrow--left {
+    left: 0;
+  }
+
+  .portal-slider__arrow--right {
+    right: 0;
+  }
+
+  .portal-slide__content {
+    inset: auto 0 0;
+
+    padding: 54px 16px 16px;
+  }
+
+  .portal-slide__content h3 {
+    font-size: 13px;
+  }
+
+  .portal-slide__content p {
+    display: none;
+  }
+
+  .portal-slide__explore {
+    font-size: 8px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .portal-slider {
+    min-height: 375px;
+  }
+
+  .portal-slide {
+    width: 180px;
+  }
+
+  .portal {
+    width: 85px;
+    height: 135px;
+  }
+
+  .portal--left {
+    left: -25px;
+  }
+
+  .portal--right {
+    right: -25px;
+  }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .portal__ring,
+  .portal__atmosphere,
+  .portal__core-light,
+  .portal__particles span {
+    animation: none;
+  }
+
+  .portal-slide,
+  .portal-slide__image,
+  .portal-slide__shine,
+  .portal-slide__content,
+  .portal-slider__arrow {
+    transition: none;
+  }
+}

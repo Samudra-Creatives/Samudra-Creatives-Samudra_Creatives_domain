@@ -1,0 +1,389 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--color-black);
+  background: var(--color-white);
+
+  font-family: var(--font-body);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Custom scrollbars with smooth rounded thumbs */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f6f4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7d5c8;
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #98b39a;
+}
+
+.container {
+  width: min(
+    var(--container-width),
+    calc(100% - 48px)
+  );
+
+  margin-inline: auto;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+
+/* Common button utilities */
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button-primary:hover {
+  background: var(--color-dark);
+  border-color: var(--color-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+/* =========================================================
+   TEXT SCROLLER
+   ========================================================= */
+
+.text-scroller {
+  position: relative;
+
+  width: 100%;
+
+  height: 42px;
+  min-height: 42px;
+  flex: 0 0 42px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border-top:
+    1px solid
+    rgba(5, 32, 4, 0.08);
+
+  border-bottom:
+    1px solid
+    rgba(5, 32, 4, 0.08);
+
+  z-index: 100;
+
+  white-space: nowrap;
+}
+
+/*
+ * Soft fading edges.
+ */
+
+.text-scroller::before,
+.text-scroller::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 100px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.text-scroller::before {
+  left: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      #ffffff,
+      rgba(255, 255, 255, 0)
+    );
+}
+
+.text-scroller::after {
+  right: 0;
+
+  background:
+    linear-gradient(
+      to left,
+      #ffffff,
+      rgba(255, 255, 255, 0)
+    );
+}
+
+/*
+ * Moving track.
+ */
+
+.text-scroller__track {
+  display: flex;
+
+  align-items: center;
+
+  width: max-content;
+
+  animation:
+    textScrollerMove
+    32s
+    linear
+    infinite;
+
+  will-change:
+    transform;
+}
+
+/*
+ * Pause when user hovers.
+ */
+
+.text-scroller:hover
+  .text-scroller__track {
+  animation-play-state:
+    paused;
+}
+
+/*
+ * Individual item.
+ */
+
+.text-scroller__item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  padding:
+    0
+    30px;
+
+  flex-shrink: 0;
+}
+
+/*
+ * Diamond/star separator.
+ */
+
+.text-scroller__dot {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    #b6ff00;
+
+  font-size: 10px;
+
+  transform:
+    rotate(0deg);
+
+  transition:
+    transform 250ms ease;
+}
+
+.text-scroller__item:hover
+  .text-scroller__dot {
+  transform:
+    rotate(90deg)
+    scale(1.2);
+}
+
+/*
+ * Text.
+ */
+
+.text-scroller__text {
+  color:
+    #173c2c;
+
+  font-family:
+    var(--font-heading);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.16em;
+}
+
+/*
+ * Infinite movement.
+ *
+ * Because the second half is an exact
+ * duplicate of the first half, moving
+ * exactly 50% creates a seamless loop.
+ */
+
+@keyframes textScrollerMove {
+  from {
+    transform:
+      translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(-50%);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .text-scroller {
+    height: 40px;
+    min-height: 40px;
+    flex-basis: 40px;
+  }
+
+  .text-scroller__item {
+    gap: 17px;
+
+    padding:
+      0
+      22px;
+  }
+
+  .text-scroller__text {
+    font-size: 8px;
+  }
+
+  .text-scroller::before,
+  .text-scroller::after {
+    width: 55px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .text-scroller {
+    height: 36px;
+    min-height: 36px;
+    flex-basis: 36px;
+  }
+
+  .text-scroller__item {
+    gap: 14px;
+
+    padding:
+      0
+      17px;
+  }
+
+  .text-scroller__text {
+    font-size: 7px;
+
+    letter-spacing:
+      0.12em;
+  }
+
+  .text-scroller__dot {
+    font-size: 8px;
+  }
+
+  .text-scroller::before,
+  .text-scroller::after {
+    width: 35px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-scroller__track {
+    animation:
+      none;
+  }
+}

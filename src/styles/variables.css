@@ -1,0 +1,59 @@
+:root {
+  --color-primary: #096b08;
+  --color-secondary: #0a6a09;
+  --color-dark: #043f05;
+
+  --color-soft-green: #eef8ef;
+
+  --color-white: #ffffff;
+  --color-black: #111111;
+  --color-text: #4b4b4b;
+
+  --color-yellow: #f5d90a;
+  --color-warm-yellow: #ffd83d;
+
+  --color-border: #e5eae6;
+
+  --gradient-primary:
+    linear-gradient(
+      120deg,
+      #096b08 0%,
+      #0a6a09 100%
+    );
+
+  --gradient-dark:
+    linear-gradient(
+      135deg,
+      #043f05 0%,
+      #096b08 50%,
+      #0a6a09 100%
+    );
+
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --container-width: 1400px;
+
+  --header-height: 82px;
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  --border-subtle: 1px solid rgba(23, 60, 44, 0.08);
+  --border-light: 1px solid var(--color-border);
+  --border-medium: 1px solid rgba(23, 60, 44, 0.16);
+  --border-primary: 1px solid rgba(9, 107, 8, 0.28);
+
+  --shadow-sm: 0 2px 8px rgba(4, 63, 5, 0.04);
+  --shadow-soft: 0 12px 35px rgba(4, 63, 5, 0.08);
+  --shadow-card: 0 6px 22px rgba(4, 63, 5, 0.06);
+  --shadow-card-hover: 0 18px 42px rgba(4, 63, 5, 0.12);
+  --shadow-menu: 0 24px 60px rgba(4, 63, 5, 0.14);
+
+  --transition-fast: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}

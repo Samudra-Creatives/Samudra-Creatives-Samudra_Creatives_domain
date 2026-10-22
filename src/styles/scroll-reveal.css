@@ -1,0 +1,60 @@
+.scroll-reveal {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 680ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
+}
+
+.scroll-reveal--up {
+  transform: translate3d(0, 20px, 0);
+}
+
+.scroll-reveal--in {
+  transition-duration: 560ms;
+}
+
+.scroll-reveal--right {
+  transform: translate3d(20px, 0, 0);
+}
+
+.scroll-reveal--left {
+  transform: translate3d(-20px, 0, 0);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+.package-card.scroll-reveal.is-visible:hover {
+  transform: translateY(-8px);
+}
+
+.testimonial-card.scroll-reveal.is-visible:hover {
+  transform: translateY(-5px);
+}
+
+.portfolio-card.scroll-reveal.is-visible:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal--up,
+  .scroll-reveal--right,
+  .scroll-reveal--left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  .package-card.scroll-reveal.is-visible:hover,
+  .testimonial-card.scroll-reveal.is-visible:hover,
+  .portfolio-card.scroll-reveal.is-visible:hover {
+    transform: none;
+  }
+}
