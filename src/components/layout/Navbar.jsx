@@ -73,6 +73,27 @@ export default function Navbar() {
     >
       <div className="navbar">
         <div className="navbar__container">
+          <div
+            className="navbar__devotional-images"
+            aria-label="Devotional images"
+          >
+            <div className="navbar__devotional-frame">
+              <img
+                src="/images/GodImg/01.jpg.jpeg"
+                alt="Devotional deity artwork"
+                className="navbar__devotional-image"
+              />
+            </div>
+
+            <div className="navbar__devotional-frame">
+              <img
+                src="/images/GodImg/Untitled-7 copy.jpg.jpeg"
+                alt="Devotional spiritual artwork"
+                className="navbar__devotional-image"
+              />
+            </div>
+          </div>
+
           <Link
             to="/"
             className="navbar__brand"

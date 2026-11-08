@@ -46,6 +46,35 @@
   gap: 11px;
 }
 
+.navbar__devotional-images {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+}
+
+.navbar__devotional-frame {
+  width: 42px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid rgba(184, 134, 11, 0.58);
+  border-radius: 9px;
+  box-shadow: 0 2px 7px rgba(4, 63, 5, 0.1);
+}
+
+.navbar__devotional-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
 .navbar__logo {
   width: 68px;
   height: 68px;
@@ -956,6 +985,18 @@
 
   .navbar__container {
     height: 70px;
+    gap: 10px;
+  }
+
+  .navbar__devotional-images {
+    gap: 5px;
+  }
+
+  .navbar__devotional-frame {
+    width: 31px;
+    height: 40px;
+    padding: 2px;
+    border-radius: 7px;
   }
 
   .navbar__logo {
@@ -982,5 +1023,38 @@
 
   .mobile-menu__actions {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar__container {
+    width: calc(100% - 24px);
+    gap: 7px;
+  }
+
+  .navbar__devotional-images {
+    gap: 3px;
+  }
+
+  .navbar__devotional-frame {
+    width: 27px;
+    height: 35px;
+  }
+
+  .navbar__logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .navbar__brand {
+    gap: 6px;
+  }
+
+  .navbar__brand-name strong {
+    font-size: 13px;
+  }
+
+  .navbar__brand-name small {
+    font-size: 6px;
   }
 }
