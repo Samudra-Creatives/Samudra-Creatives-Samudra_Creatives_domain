@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import HeroPortalSlider from "./HeroPortalSlider";
+import TypewriterTitle from "../kokonutui/type-writer";
 
 import { siteConfig } from "../../data/site";
 
@@ -29,6 +30,10 @@ const trustItems = [
     label: "Single & Bulk Orders",
     icon: Layers,
   },
+];
+
+const heroTypewriterSequences = [
+  { text: "Our Creativity.", deleteAfter: false },
 ];
 
 export default function Hero() {
@@ -58,9 +63,12 @@ export default function Hero() {
             Your Ideas.
             <br />
 
-            <span>
-              Our Creativity.
-            </span>
+            <TypewriterTitle
+              sequences={heroTypewriterSequences}
+              deleteMode="select"
+              typos={0.06}
+              className="typewriter--accent"
+            />
           </h1>
 
           <p className="hero__description">

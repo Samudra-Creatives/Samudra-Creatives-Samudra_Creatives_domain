@@ -54,9 +54,6 @@ export default function CategoryScroller() {
 
                 <div className="category-card__overlay" />
 
-                <span className="category-card__arrow">
-                  →
-                </span>
               </div>
 
               <span className="category-card__name">

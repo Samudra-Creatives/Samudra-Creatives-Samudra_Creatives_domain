@@ -47,8 +47,8 @@
 }
 
 .navbar__logo {
-  width: 64px;
-  height: 64px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   border-radius: 50%;
   border: 2px solid rgba(9, 107, 8, 0.12);
@@ -959,8 +959,8 @@
   }
 
   .navbar__logo {
-    width: 58px;
-    height: 58px;
+    width: 62px;
+    height: 62px;
   }
 
   .navbar__brand {
